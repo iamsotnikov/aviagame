@@ -46,6 +46,8 @@ io.on('connection', (socket) => {
 
   // Получаем данные от клиента и проверяем Telegram
   socket.on('telegram_auth', async (data) => {
+    console.log("📩 Получены данные авторизации от клиента:", data);
+    
     const isValid = await verifyTelegramAuth(data.initData);
     if (isValid) {
       console.log("✅ Telegram авторизация успешна:", data);
