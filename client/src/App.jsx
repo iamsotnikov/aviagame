@@ -9,12 +9,15 @@ const App = () => {
   const [receivedMessage, setReceivedMessage] = useState("");
 
   useEffect(() => {
-    console.log("WebSocket подключен");
+    console.log("window.Telegram:", window.Telegram);
+    console.log("window.Telegram.WebApp:", window.Telegram?.WebApp);
+    console.log("window.Telegram.WebApp.initDataUnsafe:", window.Telegram?.WebApp?.initDataUnsafe);
 
     // Проверяем, доступен ли объект Telegram
     if (window.Telegram?.WebApp) {
       console.log("✅ Telegram WebApp API найден");
       const initDataUnsafe = window.Telegram.WebApp.initDataUnsafe;
+      console.log("initDataUnsafe:", initDataUnsafe);
 
       if (initDataUnsafe?.user) {
         setUser(initDataUnsafe.user);
