@@ -16,7 +16,9 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
   const [receivedMessage, setReceivedMessage] = useState("");
-
+  console.log("Проверка window.Telegram:", window.Telegram);
+  console.log("Проверка window.Telegram.WebApp:", window.Telegram?.WebApp);
+  
   useEffect(() => {
     console.log("window.Telegram:", window.Telegram);
     console.log("window.Telegram.WebApp:", window.Telegram?.WebApp);
