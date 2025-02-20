@@ -3,6 +3,15 @@ import { io } from "socket.io-client";
 
 const socket = io("https://aviagame.onrender.com"); // Адрес твоего бэкенда
 
+socket.on("connect", () => {
+  console.log("✅ WebSocket подключен:", socket.id);
+});
+
+socket.on("connect_error", (err) => {
+  console.error("❌ Ошибка WebSocket:", err);
+});
+
+
 const App = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
