@@ -25,7 +25,8 @@ const App = () => {
     // Проверяем, доступен ли объект Telegram
     if (window.Telegram?.WebApp) {
       console.log("✅ Telegram WebApp API найден");
-      
+      console.log("📊 initDataUnsafe:", window.Telegram.WebApp.initDataUnsafe);
+
       console.log("window.Telegram:", window.Telegram);
       console.log("window.Telegram.WebApp:", window.Telegram.WebApp);
       console.log("initData:", window.Telegram.WebApp?.initData);
