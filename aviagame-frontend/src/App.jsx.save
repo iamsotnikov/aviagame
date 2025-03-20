@@ -1,0 +1,54 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Подключаем axios для работы с API
+
+function App() {
+  const [balance, setBalance] = useState(0);
+  const [playerId, setPlayerId] = useState(""); // Добавим поле для playerId
+
+  // Функция для получения баланса
+  const getBalance = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/get_balance", {
+        params: { playerId: playerId }, // Отправляем playerId в запросе
+      });
+      setBalance(response.data.balance); // Обновляем состояние с балансом
+    } catch (error) {
+      console.error("Ошибка при получении баланса:", error);
+    }
+  };
+
+  // Функция для регистрации игрока (здесь используем post-запрос)
+  const registerPlayer = async () => {
+    try {
+      const response = await axios.post("http://localhost:3000/register", {
+        playerId: playerId,
+        telegramId: "exampleTelegramId", // Используем временный telegramId
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error("Ошибка при регистрации:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (playerId) {
+      getBalance(); // Запрашиваем баланс при изменении playerId
+    }
+  }, [playerId]); // Слежение за изменением playerId
+
+  return (
+    <div className="App">
+      <h1>AVIAJET 🚀</h1>
+      <input
+        type="text"
+        value={playerId}
+        onChange={(e) => setPlayerId(e.target.value)}
+        placeholder="Введите playerId"
+      />
+      <button onClick={registerPlayer}>Зарегистрировать игрока</button>
+      <h2>Баланс: {balance}₽</h2>
+    </div>
+  );
+}
+
+export default App;
